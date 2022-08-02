@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $('document').ready(function () {
+        setInterval(function () {getRealData()}, 6000);//request every x seconds
+    });
+
+    function getRealData() {
+        $.ajax({
+                type : 'GET',
+                url : 'http://localhost:8080/testing',
+                success: function (result) {
+                    /// some code to get result
+                    if (result == "0"){
+                        test();
+                        getRealData2();
+                    }
+                }
+            }
+        )}
+    function getRealData2() {
+        $.ajax({
+                type : 'POST',
+                url : 'http://localhost:8080/change-test',
+                success: function (result) {
+                    /// some code to get result
+                }
+            }
+        )}
+
+    function test(){
+        var text_data = $('#SensorID').val();
+        $.ajax({
+            type : 'POST',
+            url : 'http://localhost:8080/request',
+            data : {
+                "id": true,
+                "nickname": "big",
+                "email": "tae2089@naver.com",
+                "password": "1"
+            },
+            contentType: 'application/json',
+            dataType : 'JSON',
+            success : function(result){
+                alert("result = "+ JSON.stringify(result));
+                a = JSON.stringify(result);
+                testing(a);
+            },
+            error : function(xtr,status,error){
+                alert(xtr +":"+status+":"+error);
+            }
+        });
+    }
+    function testing(result){
+        var randValNode = document.getElementById("test1");
+        randValNode.innerHTML += "<br><b><font color='red'>"+result+"</font></b>";
+    }
+    function testing2(){
+        var randValNode = document.getElementById("test1");
+        randValNode.innerHTML += "<br><b><font color='red'>"+1+"</font></b>";
+    }
+</script>
+<body>
+<p>검색하고자 하는 아이템을 입력하세요.</p>
+<input type = "text" name="SensorID" id="SensorID"/>
+<input type = "button" value = "데이터 요청" onclick="test()"/>
+<p id="test1"></p>
+</body>
+</html>

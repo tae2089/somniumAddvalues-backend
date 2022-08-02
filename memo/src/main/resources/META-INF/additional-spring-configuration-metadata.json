@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "spring.cloud.aws.credentials.accessKey",
+      "type": "java.lang.String",
+      "description": "Description for spring.cloud.aws.credentials.accessKey."
+    },
+    {
+      "name": "spring.servlet.encoding.enabled",
+      "type": "java.lang.String",
+      "description": "Description for spring.servlet.encoding.enabled."
+    }
+  ] }

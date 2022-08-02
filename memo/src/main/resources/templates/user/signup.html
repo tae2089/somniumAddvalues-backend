@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <title>회원가입</title>
+</head>
+<body>
+<h1>회원 가입</h1>
+<hr>
+
+<form th:action="@{/}" method="post" modelAttribute="userDto">
+    <div>
+        <input type="text" name="email" th:value="${userDto.email}" placeholder="이메일을 입력해주세요.">
+        <span th:text="${valid_email}"></span>
+    </div>
+
+    <div>
+        <input type="text" name="firstname" th:value="${userDto.firstname}" placeholder="닉네임을 입력해주세요.">
+        <span th:text="${valid_firstname}"></span>
+    </div>
+
+    <div>
+        <input type="text" name="secondname" th:value="${userDto.secondname}" placeholder="닉네임을 입력해주세요.">
+        <span th:text="${valid_secondname}"></span>
+    </div>
+
+    <div>
+        <input type="password" name="password" placeholder="비밀번호">
+        <span th:text="${valid_password}"></span>
+    </div>
+
+    <div>
+        <input type="password" name="password2" placeholder="비밀번호">
+        <span th:text="${valid_password2}"></span>
+    </div>
+
+    <button>등록</button>
+</form>
+</body>
+</html>
